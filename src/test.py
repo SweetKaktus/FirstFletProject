@@ -1,13 +1,12 @@
 import flet as ft
-import time
 
-def main(page: ft.Page):
-    first_name = ft.TextField(value="Gerard")
-    last_name = ft.TextField(value="Dupont")
-    first_name.disabled = False
-    last_name.disabled = False
-    page.add(first_name, last_name)
+def main(page):
+    page.add(ft.Text(f"Initial route: {page.route}"))
+    def route_change(e: ft.RouteChangeEvent):
+        page.add(ft.Text(f"New route: {e.route}"))
+
+    page.on_route_change = route_change
+    page.update()
 
 
-
-ft.app(main)
+ft.app(main, view=ft.AppView.WEB_BROWSER)
